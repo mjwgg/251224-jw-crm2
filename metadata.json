@@ -1,0 +1,8 @@
+{
+  "name": "251224 수정2",
+  "description": "new ",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}

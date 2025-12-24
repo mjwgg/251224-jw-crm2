@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Customer Relationship Manager</title>
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Apple-specific meta tags for PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AI CRM">
+    <link rel="apple-touch-icon" href="/icon.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts Import for Noto Sans KR for better readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Poor+Story&family=Yeon+Sung&display=swap" rel="stylesheet">
+
+    <style>
+      /* Apply Noto Sans KR for improved readability */
+      body, .font-sans, input, textarea, select, button, pre {
+        font-family: 'Noto Sans KR', sans-serif !important;
+      }
+
+      /* --- Font Family Variables --- */
+      html[data-font-family="gothic"] body,
+      html[data-font-family="gothic"] .font-sans,
+      html[data-font-family="gothic"] input,
+      html[data-font-family="gothic"] textarea,
+      html[data-font-family="gothic"] select,
+      html[data-font-family="gothic"] button,
+      html[data-font-family="gothic"] pre {
+        font-family: 'Gothic A1', sans-serif !important;
+      }
+      html[data-font-family="handwriting"] body,
+      html[data-font-family="handwriting"] .font-sans,
+      html[data-font-family="handwriting"] input,
+      html[data-font-family="handwriting"] textarea,
+      html[data-font-family="handwriting"] select,
+      html[data-font-family="handwriting"] button,
+      html[data-font-family="handwriting"] pre {
+        font-family: 'Poor Story', sans-serif !important;
+      }
+      html[data-font-family="handwriting2"] body,
+      html[data-font-family="handwriting2"] .font-sans,
+      html[data-font-family="handwriting2"] input,
+      html[data-font-family="handwriting2"] textarea,
+      html[data-font-family="handwriting2"] select,
+      html[data-font-family="handwriting2"] button,
+      html[data-font-family="handwriting2"] pre {
+        font-family: 'Do Hyeon', sans-serif !important;
+      }
+      html[data-font-family="handwriting3"] body,
+      html[data-font-family="handwriting3"] .font-sans,
+      html[data-font-family="handwriting3"] input,
+      html[data-font-family="handwriting3"] textarea,
+      html[data-font-family="handwriting3"] select,
+      html[data-font-family="handwriting3"] button,
+      html[data-font-family="handwriting3"] pre {
+        font-family: 'Yeon Sung', cursive !important;
+      }
+
+      /* --- Font Size Variables --- */
+      html {
+        font-size: 16px; /* Default font size */
+      }
+      html[data-font-size="small"] {
+        font-size: 14px;
+      }
+      html[data-font-size="medium"] {
+        font-size: 16px;
+      }
+      html[data-font-size="large"] {
+        font-size: 18px;
+      }
+      
+      /* --- Theme Variables --- */
+      html[data-theme="light"] {
+        --background-primary: #f8fafc; /* slate-50 */
+        --background-secondary: #ffffff; /* white */
+        --background-tertiary: #f1f5f9; /* slate-100 */
+        --background-overlay: rgba(100, 116, 139, 0.5);
+        --background-accent: #3b82f6; /* blue-500 */
+        --background-accent-hover: #2563eb; /* blue-600 */
+        --background-accent-subtle: #dbeafe; /* blue-100 */
+        --background-danger: #ef4444; /* red-500 */
+        --background-danger-hover: #dc2626; /* red-600 */
+        --background-success: #22c55e; /* green-500 */
+        --background-success-hover: #16a34a; /* green-600 */
+
+        --text-primary: #0f172a; /* slate-900 */
+        --text-secondary: #334155; /* slate-700 */
+        --text-muted: #64748b; /* slate-500 */
+        --text-accent: #2563eb; /* blue-600 */
+        --text-on-accent: #ffffff;
+        --text-danger: #dc2626; /* red-600 */
+        --text-success: #16a34a; /* green-600 */
+
+        --border-color: #e2e8f0; /* slate-200 */
+        --border-color-strong: #cbd5e1; /* slate-300 */
+        
+        --scrollbar-thumb: #94a3b8; /* slate-400 */
+      }
+
+      html[data-theme="dark"] {
+        --background-primary: #0f172a; /* slate-900 */
+        --background-secondary: #1e293b; /* slate-800 */
+        --background-tertiary: #334155; /* slate-700 */
+        --background-overlay: rgba(0, 0, 0, 0.7);
+        --background-accent: #6366f1; /* indigo-500 */
+        --background-accent-hover: #4f46e5; /* indigo-600 */
+        --background-accent-subtle: rgba(99, 102, 241, 0.15);
+        --background-danger: #ef4444; /* red-500 */
+        --background-danger-hover: #dc2626; /* red-600 */
+        --background-success: #22c55e; /* green-500 */
+        --background-success-hover: #16a34a; /* green-600 */
+
+        --text-primary: #f1f5f9; /* slate-100 */
+        --text-secondary: #cbd5e1; /* slate-300 */
+        --text-muted: #94a3b8; /* slate-400 */
+        --text-accent: #818cf8; /* indigo-400 */
+        --text-on-accent: #ffffff;
+        --text-danger: #f87171; /* red-400 */
+        --text-success: #4ade80; /* green-400 */
+
+        --border-color: #334155; /* slate-700 */
+        --border-color-strong: #475569; /* slate-600 */
+        
+        --scrollbar-thumb: #475569; /* slate-600 */
+      }
+      
+      html[data-theme="comfortable"] {
+        --background-primary: #1a202c; /* gray-800 */
+        --background-secondary: #2d3748; /* gray-700 */
+        --background-tertiary: #4a5568; /* gray-600 */
+        --background-overlay: rgba(0, 0, 0, 0.7);
+        --background-accent: #2dd4bf; /* teal-400 */
+        --background-accent-hover: #14b8a6; /* teal-500 */
+        --background-accent-subtle: rgba(45, 212, 191, 0.1);
+        --background-danger: #e53e3e;
+        --background-danger-hover: #c53030;
+        --background-success: #38a169;
+        --background-success-hover: #2f855a;
+
+        --text-primary: #e2e8f0; /* slate-200 */
+        --text-secondary: #cbd5e0; /* slate-300 */
+        --text-muted: #a0aec0; /* slate-400 */
+        --text-accent: #5eead4; /* teal-300 */
+        --text-on-accent: #0f172a;
+        --text-danger: #fc8181;
+        --text-success: #68d391;
+
+        --border-color: #4a5568; /* gray-600 */
+        --border-color-strong: #718096; /* gray-500 */
+        
+        --scrollbar-thumb: #718096;
+      }
+  
+      html[data-theme="sepia"] {
+        --background-primary: #fdf6e3;
+        --background-secondary: #fffcf2;
+        --background-tertiary: #f2e5bc;
+        --background-overlay: rgba(94, 82, 63, 0.5);
+        --background-accent: #b91c1c; /* red-700 */
+        --background-accent-hover: #991b1b; /* red-800 */
+        --background-accent-subtle: #fee2e2; /* red-100 */
+        --background-danger: #cc241d;
+        --background-danger-hover: #9d0006;
+        --background-success: #98971a;
+        --background-success-hover: #79740e;
+
+        --text-primary: #3c3836;
+        --text-secondary: #504945;
+        --text-muted: #665c54;
+        --text-accent: #b91c1c; /* red-700 */
+        --text-on-accent: #ffffff;
+        --text-danger: #9d0006;
+        --text-success: #79740e;
+
+        --border-color: #d5c4a1;
+        --border-color-strong: #bdae93;
+        
+        --scrollbar-thumb: #a89984;
+      }
+      
+      html[data-theme="clean"] {
+        --background-primary: #ffffff; /* white */
+        --background-secondary: #ffffff; /* white */
+        --background-tertiary: #f1f5f9; /* slate-100 */
+        --background-overlay: rgba(100, 116, 139, 0.5);
+        --background-accent: #3b82f6; /* blue-500 */
+        --background-accent-hover: #2563eb; /* blue-600 */
+        --background-accent-subtle: #dbeafe; /* blue-100 */
+        --background-danger: #ef4444; /* red-500 */
+        --background-danger-hover: #dc2626; /* red-600 */
+        --background-success: #22c55e; /* green-500 */
+        --background-success-hover: #16a34a; /* green-600 */
+
+        --text-primary: #0f172a; /* slate-900 */
+        --text-secondary: #334155; /* slate-700 */
+        --text-muted: #64748b; /* slate-500 */
+        --text-accent: #2563eb; /* blue-600 */
+        --text-on-accent: #ffffff;
+        --text-danger: #dc2626; /* red-600 */
+        --text-success: #16a34a; /* green-600 */
+
+        --border-color: transparent; /* Make default borders invisible */
+        --border-color-strong: #e2e8f0; /* slate-200 */
+        
+        --scrollbar-thumb: #cbd5e1; /* slate-300 */
+      }
+      
+      /* --- Base Styles --- */
+      body {
+        background-color: var(--background-primary);
+        color: var(--text-secondary);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      html[data-theme="clean"] .shadow,
+      html[data-theme="clean"] .shadow-sm,
+      html[data-theme="clean"] .shadow-md,
+      html[data-theme="clean"] .shadow-lg,
+      html[data-theme="clean"] .shadow-xl,
+      html[data-theme="clean"] .shadow-2xl {
+        box-shadow: none;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--text-primary);
+        font-weight: 700;
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in {
+        animation: fade-in 0.5s ease-out forwards;
+      }
+      @keyframes fade-in-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.5s ease-out forwards;
+      }
+      /* Custom Scrollbar for better UX */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb);
+        border-radius: 20px;
+      }
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb) transparent;
+      }
+    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0",
+    "react-window": "https://esm.sh/react-window@1.8.10",
+    "dexie": "https://aistudiocdn.com/dexie@^4.2.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-latest/package/xlsx.mjs",
+    "d3": "https://esm.sh/d3@7"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

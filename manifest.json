@@ -1,0 +1,16 @@
+{
+  "short_name": "AI CRM",
+  "name": "AI Customer Relationship Manager",
+  "description": "An AI-powered CRM application to manage customer data, analyze consultations, and set reminders for important events. It helps streamline customer management with intelligent features.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#1e293b",
+  "background_color": "#f1f5f9"
+}
